@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Universo Autista - Apoio e Carinho</title>
+  <meta name="description" content="Site dedicado ao apoio e atividades para crianças autistas, com informações, jogos e histórias." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset e base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f9fc;
+      color: #222;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header fixo */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+    header .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #0052cc;
+      user-select: none;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav a {
+      font-weight: 600;
+      color: #555;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav a:hover, nav a:focus {
+      background-color: #0052cc;
+      color: white;
+      outline: none;
+    }
+
+    /* Espaço para header */
+    main {
+      padding-top: 80px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Seção Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 400px;
+      text-align: center;
+      background: linear-gradient(135deg, #a3cef1, #f7f9fc);
+      border-radius: 16px;
+      padding: 3rem 1rem;
+      box-shadow: 0 8px 24px rgba(0, 82, 204, 0.15);
+      user-select: none;
+      margin-bottom: 3rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0041a3;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      color: #123a6f;
+      line-height: 1.5;
+    }
+
+    /* Botão substituído por link estilizado */
+    .btn-start {
+      display: inline-block;
+      background-color: #0052cc;
+      color: white;
+      padding: 0.9rem 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 82, 204, 0.4);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      max-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      margin: 0 auto;
+    }
+    .btn-start:hover,
+    .btn-start:focus {
+      background-color: #003d99;
+      outline: none;
+    }
+
+    /* Grid de cards explicativos */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: box-shadow 0.3s ease, opacity 0.6s ease-out, transform 0.6s ease-out;
+      user-select: text;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .card.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .card:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    .card h3 {
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #0052cc;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card h3 svg {
+      fill: #0052cc;
+      flex-shrink: 0;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      user-select: none;
+      border-top: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    /* Responsividade - ajustes para celular */
+    @media (max-width: 600px) {
+      header {
+        padding: 0 1rem;
+        height: 56px;
+      }
+      header .logo {
+        font-size: 1.3rem;
+      }
+      nav {
+        gap: 1rem;
+      }
+      nav a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.9rem;
+      }
+      main {
+        padding-top: 70px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+      }
+      .hero {
+        min-height: auto;
+        padding: 2rem 1rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+        max-width: 100%;
+      }
+      .btn-start {
+        max-width: 100%;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+      }
+      .card {
+        padding: 1.5rem 1rem;
+      }
+      .card h3 {
+        font-size: 1.2rem;
+      }
+      .card p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Universo Autista</div>
+  <nav>
+    <a href="emocoes.html">Emoções</a>
+    <a href="cores.html">Cores</a>
+    <a href="historias.html">Histórias</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Apresentação do Universo Autista">
+    <h1>Um mundo de apoio e amor para crianças autistas</h1>
+    <p>Construindo com carinho para cada família que busca acolhimento, informação e atividades que fazem a diferença.</p>
+    <a href="emocoes.html" class="btn-start" aria-label="Começar agora - acessar seção Emoções">Começar agora</a>
+  </section>
+
+  <section class="cards-grid" aria-label="Informações sobre o autismo e o projeto">
+    <article class="card" tabindex="0">
+      <h3>
+        <svg width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 3.87 7 13 7 13s7-9.13 7-13c0-3.87-3.13-7-7-7zM7 9a5 5 0 1110 0 5 5 0 01-10 0z"/></svg>
+        O que é o Autismo?
+      </h3>
+      <p>O Transtorno do Espectro Autista (TEA) afeta a comunicação, o comportamento e a interação social das pessoas. Cada criança no espectro tem suas particularidades.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <h3>
+        <svg width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="#0052cc" stroke-width="2" fill="none"/><path d="M12 6v6l4 2" stroke="#0052cc" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        Como identificar?
+      </h3>
+      <p>Sinais incluem atraso na fala, contato visual reduzido, comportamentos repetitivos e resistência a mudanças. Observação precoce é essencial.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <h3>
+        <svg width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l7-7 7 7M12 5v14" stroke="#0052cc" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        Como e onde procurar ajuda?
+      </h3>
+      <p>Procure profissionais especializados como neuropediatras e psicólogos. Centros de saúde oferecem diagnóstico e acompanhamento.</p>
+    </article>
+    <article class="card" tabindex="0">
+      <h3>
+        <svg width="24" height="24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="#0052cc" stroke-width="2" fill="none"/><path d="M8 12h8" stroke="#0052cc" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        Como prevenir?
+      </h3>
+      <p>Embora não exista prevenção garantida, cuidados no pré-natal e evitar substâncias nocivas são importantes.</p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  © 2025 Universo Autista — Feito por Leandro Juan de Sousa Silva
+</footer>
+
+<script>
+  // Animação fade-in quando os cards aparecem na tela
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.2});
+  cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>

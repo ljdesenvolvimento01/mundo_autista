@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brincar com Cores - Universo Autista</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #f1faee, #a8dadc);
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1d3557;
+      margin-top: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+    }
+
+    #colorBox {
+      width: 250px;
+      height: 250px;
+      background-color: #ffffff;
+      border: 5px solid #1d3557;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.5s ease, transform 0.2s ease;
+    }
+
+    .animate {
+      animation: pulse 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    #colorName {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #1d3557;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .red    { background-color: #e63946; }
+    .blue   { background-color: #457b9d; }
+    .green  { background-color: #2a9d8f; }
+    .yellow { background-color: #f4d35e; color: black; }
+    .purple { background-color: #b5838d; }
+    .orange { background-color: #f4a261; }
+
+    /* Botão de menu */
+    .menu-button {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      background-color: #1d3557;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .floaty {
+      position: absolute;
+      animation: floatUp 20s infinite linear;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música de fundo -->
+  <audio autoplay loop id="bgMusic" src="fundo.mp3"></audio>
+
+  <!-- Botão de voltar ao menu -->
+  <button class="menu-button" onclick="window.location.href='universo_autista.html'">🏠 Menu</button>
+
+  <h1>🎨 Brincar com Cores</h1>
+  <div class="container">
+    <div id="colorBox"></div>
+    <div id="colorName">Escolha uma cor!</div>
+
+    <div class="buttons">
+      <button class="red"    onclick="changeColor('#e63946', 'Vermelho', 'vermelho.mp3')">🔴 Vermelho</button>
+      <button class="blue"   onclick="changeColor('#457b9d', 'Azul', 'azul.mp3')">🔵 Azul</button>
+      <button class="green"  onclick="changeColor('#2a9d8f', 'Verde', 'verde.mp3')">🟢 Verde</button>
+      <button class="yellow" onclick="changeColor('#f4d35e', 'Amarelo', 'amarelo.mp3')">🟡 Amarelo</button>
+      <button class="purple" onclick="changeColor('#b5838d', 'Roxo', 'roxo.mp3')">🟣 Roxo</button>
+      <button class="orange" onclick="changeColor('#f4a261', 'Laranja', 'laranja.mp3')">🟠 Laranja</button>
+    </div>
+  </div>
+
+  <script>
+    // Bolinhas/borboletas/peixes/emojis alternando
+    const imagens = [
+      "https://cdn-icons-png.flaticon.com/512/616/616408.png", // estrela
+      "https://cdn-icons-png.flaticon.com/512/616/616430.png", // borboleta
+      "https://cdn-icons-png.flaticon.com/512/616/616408.png", // peixe
+      "https://cdn-icons-png.flaticon.com/512/742/742751.png", // emoji sorriso
+      "https://cdn-icons-png.flaticon.com/512/616/616408.png"  // bolinha estrela
+    ];
+
+    for (let i = 0; i < 20; i++) {
+      const img = document.createElement('img');
+      img.src = imagens[Math.floor(Math.random() * imagens.length)];
+      img.className = 'floaty';
+      img.style.width = Math.random() * 40 + 30 + 'px';
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.bottom = '-60px';
+      img.style.animationDuration = (10 + Math.random() * 15) + 's';
+      document.body.appendChild(img);
+    }
+
+    function changeColor(color, name, audioFile) {
+      const box = document.getElementById("colorBox");
+      const label = document.getElementById("colorName");
+
+      box.style.backgroundColor = color;
+      label.textContent = name;
+
+      box.classList.remove("animate");
+      void box.offsetWidth;
+      box.classList.add("animate");
+
+      const audio = new Audio(audioFile);
+      audio.play();
+    }
+  </script>
+</body>
+</html>

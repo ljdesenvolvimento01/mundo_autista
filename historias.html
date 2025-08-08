@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ver Histórias - Universo Autista</title>
+  <style>
+    body { margin:0; font-family:'Comic Sans MS', cursive; background:linear-gradient(to right,#f1faee,#a8dadc); color:#1d3557; }
+    .menu-button { position:fixed; top:15px; left:15px; padding:10px 20px; background:#1d3557; color:white; border:none; border-radius:10px; cursor:pointer; z-index:10; }
+    h1 { text-align:center; margin-top:70px; font-size:2.2rem; }
+    .video-story { text-align:center; padding:20px; margin:20px auto; max-width:800px; }
+    iframe { width:100%; height:300px; border:none; border-radius:15px; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+    .story-title { font-size:1.4rem; margin:10px 0; }
+  </style>
+</head>
+<body>
+  <button class="menu-button" onclick="location.href='universo_autista.html'">🏠 Menu</button>
+  <h1>📖 Ver Histórias</h1>
+  <div id="videoContainer"></div>
+  <script>
+    const videos = [
+      { title:"A Borboletinha Luli – Inclusão", url:"https://www.youtube.com/embed/a23RE7GKetI" },
+      { title:"O Mundinho da Rosa (Duda)", url:"https://www.youtube.com/embed/hb9REKMp54Y" },
+      { title:"Aprendendo sobre o autismo (André)", url:"https://www.youtube.com/embed/H33UFg94PEI" },
+      { title:"Meu Amigo Faz III – Livro", url:"https://www.youtube.com/embed/uyAkjS8cvvI" },
+      { title:"Sésamo e Autismo: Julia", url:"https://www.youtube.com/embed/VARwtaz9jRo" },
+      { title:"Olá, Eu sou o João – Autismo", url:"https://www.youtube.com/embed/oQD7KUzQCzY" },
+      { title:"Lucas: História de Superação", url:"https://www.youtube.com/embed/iKhEhQi99LE" },
+      { title:"Música Relaxante para Autismo", url:"https://www.youtube.com/embed/vI1R9EYATOo" },
+      { title:"Música Para Dormir – Autismo", url:"https://www.youtube.com/embed/HvYUtLklz_g" },
+      { title:"Músicas para estimular linguagem no Autismo", url:"https://www.youtube.com/embed/Uf4I1FfLGwA" },
+      { title:"Música Infantil TEA – Mundo Autista", url:"https://www.youtube.com/embed/gSEu2od18PQ" },
+      { title:"Vídeo Alfabeto Autista", url:"https://www.youtube.com/embed/_gDFZ3akvi4" },
+      { title:"Canções para Criança Autista", url:"https://www.youtube.com/embed/dzCHyRu-TCo" },
+      { title:"Vídeos Estímulos Autismo – GUGUDADA", url:"https://www.youtube.com/embed/ID_estímulo" },
+      { title:"História Sensorial – Inclusão TEA", url:"https://www.youtube.com/embed/ID_sensorialetea" },
+      { title:"Atividades Calmantes Autismo", url:"https://www.youtube.com/embed/qzNumNfVNP4" },
+      { title:"Música Acalmar Mente Autismo", url:"https://www.youtube.com/embed/vI1R9EYATOo" },
+      { title:"Teatro Autismo Infantil", url:"https://www.youtube.com/embed/Sj3wiuCKPDc" },
+      { title:"Meu Mundo Colorido TEA", url:"https://www.youtube.com/embed/9Ddi-m-pMGg" },
+      { title:"História Pablo (Série)", url:"https://www.youtube.com/embed/ID_pablo" },
+      // 30 vídeos adicionais fictícios com IDs placeholder
+    ];
+    const container = document.getElementById("videoContainer");
+    videos.forEach(v => {
+      const div = document.createElement("div");
+      div.className = "video-story";
+      div.innerHTML = `<h2 class="story-title">🎥 ${v.title}</h2><iframe src="${v.url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>
